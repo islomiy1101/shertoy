@@ -1,0 +1,50 @@
+{%extends 'base2.html'%}
+{% load static %}
+{% block head%}
+<title>Respublika bo`yicha Natijalar</title>
+<style>
+    #header {
+        background-color: #36A5C3;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<br><br><br>
+<div class="container">
+    <div class="col-md-13 mx-auto" style="padding-top: 100px;">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Ishtirokchilar</th>
+                    <th>Viloyat</th>
+                    <th>O`quv Markazi</th>
+                    <th>Til</th>
+                    <th>Ball</th>
+                    <th>Natija Vil</th>
+                    <th>Natija Res</th>
+                    <th>Imtixon Sanasi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td><span style="font-weight: 700;">{{i.user_id.first_name}} {{i.user_id.last_name}}</span> <br>
+                        <span>{{i.register_id.contact_number2}}</span>
+                    </td>
+                    <td>{{i.register_id.provin}}</td>
+                    <td>{{i.register_id.training_center}}</td>
+                    <td>{{i.question_langid}}</td>
+                    <td><span style="font-weight: bold;">{{i.result}}</span> <br>
+                        {{i.correct_answers}}/{{i.total_questions}}
+                    </td>
+                    <td>{{i.place_number}}</td>
+                    <td>{{i.place_number_country}}</td>
+                    <td>{{i.question_langid.start_time|safe }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<br><br><br>
+{% endblock%}

@@ -1,0 +1,47 @@
+{%extends 'base2.html'%}
+{% load static %}
+{% block head%}
+<title>Respublika bo`yicha Natijalarni Tanlash Oynasi</title>
+<style>
+    #header {
+        background-color: #36A5C3;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<br><br><br>
+<div class="container">
+    <div class="col-md-13 mx-auto" style="padding-top: 100px;">
+        <form action="" method="post">
+            {%csrf_token%}
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="">Test Tilini Tanlang</label>
+                        <select name="langs" id="" class="form-control">
+                            {% for lang in data %}
+                            <option value="{{lang.name_lang}}">{{lang.name_lang}}</option>
+                            {% endfor%}
+                        </select>
+                    </div>
+                    <div class="col-md-6" style="padding-top: 32px;">
+                       <input type="submit" name="btn" class="btn btn-success" value="Natijalarni ko`rish" id="submitbtn">
+                    </div>
+                </div>
+            </div>
+           
+        </form>
+    </div>
+</div>
+    {% if messages%}
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+        {{message|safe}}
+    </div>
+
+
+<br><br><br>
+
+{% endfor %}
+{% endif %}
+{% endblock%}

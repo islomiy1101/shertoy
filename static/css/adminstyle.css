@@ -1,0 +1,26 @@
+#header{
+    background-color: #3388BE;
+    color: #ffffff;
+}
+div.breadcrumbs{
+    background-color:#4b7782;
+    padding: 10px 40px;
+    border: none;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: left;
+}
+.login .submit-row{
+    padding: 0px !important;
+}
+
+.submit-row input{
+    width: 100%;
+    background-color: #3388BE;
+}
+
+.module h2,
+.module caption,
+.inline-group h2{
+    background-color: #3388BE;
+}

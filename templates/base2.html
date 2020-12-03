@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zxx" class="no-js">
+
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    {% block title %}
+    
+    {% endblock %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/main.css'%}">
+    <link rel="stylesheet" href="{% static 'css/linearicons.css'%}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css'%}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css'%}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css'%}">
+    <link rel="stylesheet" href="{% static 'css/my.css'%}">
+
+    <script src="{% static 'jquery.js'%}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
+    {% block head%}
+
+    {% endblock %}
+</head>
+
+<body>
+
+    <!-- Start Header Area -->
+    <header id="header">
+        <div class="container">
+            <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo">
+                    <a href="{% url 'index'%}"><img src="{% static 'img/logo8oq23.jpg'%}" alt="" title="" width="180"
+                            height="50" /></a>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <!-- <li class="menu-active"><a href="index.html">Shaxsiy kabinet</a></li> -->
+                        <li><a href="{% url 'about'%}">Biz haqimizda</a>
+                            <ul>
+                                <li><a href="{% url 'about'%}">Maqsad va G'oyalar</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="menu-has-children"><a href="">Natijalar</a>
+                            <ul>
+                                <li><a href="{% url 'result_section'%}">Viloyatlar</a></li>
+
+
+                                <li><a href="{% url 'result_section_country'%}">Respublika</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-has-children"><a href="">Markazlar</a>
+                            <ul>
+                                <li><a href="#">Hududiy</a></li>
+                                <li><a href="#">Respublikalar aro</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-has-children"><a href="{% url 'news' %}">Yangiliklar</a>
+                            
+                        </li>
+                        <li><a href="{% url 'contact'%}">Bog'lanish</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="menu-has-children">
+                            <a href="#">Salom {{user.username}}</a>
+                            <ul>
+                                <li><a href="{% url 'student_dash'%}">Shaxsiy kabinet</a></li>
+                                <li><a href="{% url 'user_logout'%}">Chiqish</a></li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li><a href="{% url 'register' %}">Ro'yxatdan o'tish</a></li>
+                        <li>
+                            <a href="" data-toggle="modal" data-target='#mymodal'>Kirish</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+            </div>
+
+
+        </div>
+    </header>
+    <div class="col-md-12">
+        <div class="modal fade inspect" id="mymodal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content" style="z-index: 10;">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss='modal'>&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'user_login' %}" method="post">
+                            {%csrf_token %}
+                            <div class="form-group">
+                                <label for="">Foydalanuvchi Nomi</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-user-o"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="username" class="form-control"
+                                        placeholder='Foydalanuvchi nomini kiriting...'>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Parol</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-key"></i>
+                                        </span>
+                                    </div>
+                                    <input type="password" name="password" class="form-control"
+                                        placeholder="Parolni kiriting">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="rememberme" id=""><label for="">&nbsp; Yodda saqla</label>
+                                &nbsp;<a href="{% url 'forgot_pass'%}">Parolni unutdingmi?</a>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Kirish" class="btn btn-success"style='width:100%;'>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="modal fade inspect" id="mymodal">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content" style="z-index: 10;">
+                        <div class="modal-header">
+                            <button class="close" data-dismiss='modal'>&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'user_login' %}" method="post">
+                                {%csrf_token %}
+                                <div class="form-group">
+                                    <label for="">Username</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-user-o"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" name="username" class="form-control"
+                                            placeholder='Enter username'>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Password</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-key"></i>
+                                            </span>
+                                        </div>
+                                        <input type="password" name="password" class="form-control"
+                                            placeholder="Enter password">
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group">
+                                            <input type="checkbox" name="rememberme" id=""><label for="">Remember me</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" value="submit" class="btn btn-success">
+                                        </div> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Header Area -->
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- Start Footer Area -->
+    <footer class="footer-area section-gap" style="background-color:#36A5C3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-6 single-footer-widget">
+                    <h4>Top Products</h4>
+                    <ul>
+                        <li><a href="#">Managed Website</a></li>
+                        <li><a href="#">Manage Reputation</a></li>
+                        <li><a href="#">Power Tools</a></li>
+                        <li><a href="#">Marketing Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 single-footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Brand Assets</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 single-footer-widget">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Brand Assets</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 single-footer-widget">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Guides</a></li>
+                        <li><a href="#">Research</a></li>
+                        <li><a href="#">Experts</a></li>
+                        <li><a href="#">Agencies</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="footer-bottom row align-items-center">
+                <p class="footer-text m-0 col-lg-8 col-md-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is
+                    made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                        target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+                <div class="col-lg-4 col-md-12 footer-social">
+                    <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                    <a href="https://mobile.twitter.com/action_uz"><i class="fa fa-twitter"></i></a>
+                    <a href="https://t.me/actions_uz"><i class="fa fa-telegram"></i></a>
+                    <a href="https://instagram.com/actions_uz?igshid=1ttcad61vztxz"><i class="fa fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/channel/UCurdwYew5UsaCLMhAbik6mA?view_as=subscriber"><i class="fa fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer Area -->
+
+    <!-- ####################### Start Scroll to Top Area ####################### -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"></a>
+    </div>
+    <!-- ####################### End Scroll to Top Area ####################### -->
+
+    <script src="{% static 'js/vendor/jquery-2.2.4.min.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js'%}"></script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script src="{% static 'js/easing.min.js'%}"></script>
+    <script src="{% static 'js/hoverIntent.js'%}"></script>
+    <script src="{% static 'js/superfish.min.js'%}"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.js'%}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js'%}"></script>
+    <script src="{% static 'js/owl.carousel.min.js'%}"></script>
+    <script src="{% static 'js/owl-carousel-thumb.min.js'%}"></script>
+    <script src="{% static 'js/jquery.sticky.js'%}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js'%}"></script>
+    <script src="{% static 'js/parallax.min.js'%}"></script>
+    <script src="{% static 'js/waypoints.min.js'%}"></script>
+    <script src="{% static 'js/wow.min.js'%}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js'%}"></script>
+    <script src="{% static 'js/mail-script.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+
+</body>
+
+</html>
